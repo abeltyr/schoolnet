@@ -62,7 +62,7 @@ class gradecontroller extends Controller
 			'subject4' => 'required|max:120',
 			'subject5' => 'required|max:120',
 		]);
-        $school = school::find('2');
+        $school = school::find('1');
         $schname =  $school->name;
         $schcode =  $school->school_code;
         $grade = new grade();
@@ -155,7 +155,7 @@ class gradecontroller extends Controller
         $num = '1';
         while($num <= $notest){
             $tabname =  $schname.$schcode.$gradele.$num;
-            Schema::create($tabname, function (Blueprint $table) {
+            Schema::create($tabname, function (Blueprint $table ) {
                 $table->increments('id');
                 $table->string('school_code');
                 $table->string('schoolname');
@@ -164,6 +164,10 @@ class gradecontroller extends Controller
                 $table->string('studentid');
                 $table->string('section');
             }); 
+            Schema::table($tabname , function($subject1)
+            {
+                $subject1;
+            });
             $table = new table();
             $table->schoolcode = $schname;
             $table->schoolname = $schcode;
