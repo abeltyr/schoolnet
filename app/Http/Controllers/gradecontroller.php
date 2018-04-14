@@ -10,6 +10,9 @@ use App\grade;
 use App\table;
 use App\school;
 use Image;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 
 class gradecontroller extends Controller
@@ -59,11 +62,11 @@ class gradecontroller extends Controller
 			'subject4' => 'required|max:120',
 			'subject5' => 'required|max:120',
 		]);
-        $school = school::find('1');
+        $school = school::find('2');
         $schname =  $school->name;
         $schcode =  $school->school_code;
         $grade = new grade();
-		$grade->school_name = $schname ;
+		$grade->school_name = $schname.$schcode ;
 		$grade->school_code = $schcode ; 
 		$grade->testno = $notest;
         $grade->no_section = $nosection;
@@ -149,56 +152,27 @@ class gradecontroller extends Controller
         if($subject30){
             $grade->subj30 = $subject30;
         }  
-        $grade->save();
-        /*
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "schoolnet";
         $num = '1';
-        $schname =  $school->name;
-        $schcode =  $school->school_code;
-        $tabname =  $schname.$schcode.$gradele.$num;
         while($num <= $notest){
+            $tabname =  $schname.$schcode.$gradele.$num;
+            Schema::create($tabname, function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('school_code');
+                $table->string('schoolname');
+                $table->string('firstname');
+                $table->string('lastname');
+                $table->string('studentid');
+                $table->string('section');
+            }); 
             $table = new table();
-            $table->schoolcode = '131312';
-            $table->schoolname = 'sasac';
-            $sname = 'sasac';
-            $scode = '131312';
-            $table->tablename = $tname;
+            $table->schoolcode = $schname;
+            $table->schoolname = $schcode;
+            $table->tablename = $tabname;
             $table->save();
-
-            $conn = new mysqli($servername, $username, $password, $dbname);    
-            $sql = "CREATE TABLE SCHOOL$grade_$num (
-            id INT(120) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-            schoolcode VARCHAR(30) NOT NULL,
-            schoolname VARCHAR(30) NOT NULL,
-            firstname VARCHAR(30) NOT NULL,
-            lastname VARCHAR(30) NOT NULL,
-            studentid INTEGER(50),
-            section VARCHAR(50),
-            $subject1 VARCHAR(50),
-            $subject2 VARCHAR(50),
-            $subject3 VARCHAR(50),
-            $subject4 VARCHAR(50),
-            $subject5 VARCHAR(50),
-            )";
-            $conn->close();
-            $db_hand2 = mysqli_connect($servername, $username, $password, $dbname);
-            if($subject6 !== ''){
-                $table  = "SCHOOL51";
-                mysqli_query($db_hand2,"ALTER TABLE $table ADD $subject6  VARCHAR( 255 ) ");
-                echo "updated";
-            } 
-            if($subject7 !== 'none'){
-                $table  = "SCHOOL52";
-                mysqli_query($db_hand2,"ALTER TABLE $table ADD $subject7  VARCHAR( 255 ) ");
-                echo "updated";
-            } 
-         $nu++;
+         $num++;
         }
-
-*/		return view('home');
+        $grade->save();
+        return view('home');
 	}
 
 }
