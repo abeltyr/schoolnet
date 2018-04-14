@@ -8,14 +8,15 @@ use Auth;
 use File;
 use App\grade;
 use App\table;
+use App\school;
 use Image;
 
 
 class gradecontroller extends Controller
 {
     
-	public function SignUp(Request $request){
-		$grade = $request['grade'];
+	public function grade(Request $request){
+		$gradele = $request['grade'];
 		$notest = $request['test'];
 		$nosection = $request['section'];
 		$subject1 = $request['subject1'];
@@ -58,12 +59,15 @@ class gradecontroller extends Controller
 			'subject4' => 'required|max:120',
 			'subject5' => 'required|max:120',
 		]);
+        $school = school::find('1');
+        $schname =  $school->name;
+        $schcode =  $school->school_code;
         $grade = new grade();
-		$grade->school_name = '$first_name';
-		$grade->school_code = '0312871021'; 
+		$grade->school_name = $schname ;
+		$grade->school_code = $schcode ; 
 		$grade->testno = $notest;
         $grade->no_section = $nosection;
-        $grade->grade = $grade;
+        $grade->grade = $gradele;
         $grade->subj1 = $subject1;
 		$grade->subj2 = $subject2;
 		$grade->subj3 = $subject3;
@@ -146,12 +150,15 @@ class gradecontroller extends Controller
             $grade->subj30 = $subject30;
         }  
         $grade->save();
-/*
+        /*
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "schoolnet";
-        $num= '1';
+        $num = '1';
+        $schname =  $school->name;
+        $schcode =  $school->school_code;
+        $tabname =  $schname.$schcode.$gradele.$num;
         while($num <= $notest){
             $table = new table();
             $table->schoolcode = '131312';

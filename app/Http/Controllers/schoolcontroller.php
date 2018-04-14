@@ -29,7 +29,8 @@ class schoolcontroller extends Controller
 			'sname' => 'required|max:120',
 			'srep' => 'required|max:120',
 			'email' => 'required|email|unique:school|unique:schools',
-			'phone' => 'required|max:9|min:9|unique:school|unique:schools',  
+            'phone' => 'required|max:9|min:9',  
+            'phone' => 'unique:school|unique:schools',
 			'saddress' => 'required|max:120',
 			'nstud' => 'required|max:120',
 			'sowner' => 'required|max:120',
@@ -40,7 +41,7 @@ class schoolcontroller extends Controller
 		$adds = school::all(); 
         foreach($adds as $add){ 
             if (($add->id) == ''){
-               $school->school_code = '6356';
+               $school->school_code = '21867218';
             }
             else{
                 $school->school_code = ($add->school_code) + '1';
@@ -57,7 +58,7 @@ class schoolcontroller extends Controller
         }
 		$school->representative = $rep;
 		$school->email = $email;
-        $school->telephone = $phone;
+        $school->phone = $phone;
         $school->address = $address ;	
 		$school->no_student = $nstud;
         $school->school_owner = $owner;

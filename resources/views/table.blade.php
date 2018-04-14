@@ -178,9 +178,9 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group form-group-default {{ $errors->has('email') ? ' has-error' : '' }}" id="emailGroup">
-                <label>Number of test Persemister</label>
+                <label>Number of subject</label>
                 <div class="controls">
-                    <input type="number" name="test" value="{{ old('test') }}" placeholder="Number of test Persemister" class="form-control" required>
+                    <input type="number" name="nosubject" value="{{ old('nosubject') }}" placeholder="Number of Subject" class="form-control" required>
                 </div>
             </div>
         </div>  

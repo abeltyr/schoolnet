@@ -20,7 +20,7 @@ class CreateSchoolsTable extends Migration
             $table->string('logo')->default('/school/default.jpg');
             $table->string('representative');
             $table->string('email')->unique();
-            $table->integer('telephone')->unique();
+            $table->integer('phone')->unique();
             $table->string('address');
             $table->string('no_student');
             $table->string('school_owner');
