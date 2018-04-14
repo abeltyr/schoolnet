@@ -13,6 +13,7 @@ use Image;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Controllers\gradecontroller;
 
 
 class gradecontroller extends Controller
@@ -66,7 +67,7 @@ class gradecontroller extends Controller
         $schname =  $school->name;
         $schcode =  $school->school_code;
         $grade = new grade();
-		$grade->school_name = $schname.$schcode ;
+		$grade->school_name = $schname;
 		$grade->school_code = $schcode ; 
 		$grade->testno = $notest;
         $grade->no_section = $nosection;
@@ -152,22 +153,34 @@ class gradecontroller extends Controller
         if($subject30){
             $grade->subj30 = $subject30;
         }  
+        $grade->save();
+
+        $tabs = grade::all();
+        return view('home',['tabs'=> $tabs]);
+    }
+    public function viewtab(){
+        $tabs = grade::all();
+        return view('viewtab',['tabs'=> $tabs]);
+    }
+    public function addtable(Request $request){
         $num = '1';
+        $id = $request['see']; 
+        $tabb = grade::find($id);
+        $notest = $tabb->testno;
+        $schname = $tabb->school_name;
+        $schcode = $tabb->school_code;
+        $gradele = $tabb->grade;
         while($num <= $notest){
             $tabname =  $schname.$schcode.$gradele.$num;
-            Schema::create($tabname, function (Blueprint $table ) {
-                $table->increments('id');
-                $table->string('school_code');
-                $table->string('schoolname');
-                $table->string('firstname');
-                $table->string('lastname');
-                $table->string('studentid');
-                $table->string('section');
+            Schema::create($tabname,  function (Blueprint $table) { 
+                    $table->increments('id');
+                    $table->string('school_code');
+                    $table->string('schoolname');
+                    $table->string('firstname');
+                    $table->string('lastname');
+                    $table->string('studentid');
+                    $table->string('section');
             }); 
-            Schema::table($tabname , function($subject1)
-            {
-                $subject1;
-            });
             $table = new table();
             $table->schoolcode = $schname;
             $table->schoolname = $schcode;
@@ -175,8 +188,7 @@ class gradecontroller extends Controller
             $table->save();
          $num++;
         }
-        $grade->save();
-        return view('home');
-	}
-
+        $tabs = grade::all();
+        return view('viewtab',['tabs'=> $tabs]);
+    }
 }

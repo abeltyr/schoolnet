@@ -36,6 +36,16 @@ Route::GET('/edunet school grade',[
 ]);
 
 
+Route::POST('/edunet table added',[
+    'uses' => 'gradecontroller@addtable',
+    'as' => 'addtable',
+]);
+
+Route::GET('/edunet table view',[
+    'uses' => 'gradecontroller@viewtab',
+    'as' => 'viewtab',
+]);
+
 Route::GET('/edunet adding school',[
     'uses' => 'schoolcontroller@inde',
     'as' => 'inde',

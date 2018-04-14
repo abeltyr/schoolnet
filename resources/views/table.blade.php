@@ -442,6 +442,9 @@
 
     </form>
 </div>
+    <a href="{{route('viewtab')}}" class="btn mdc-button--raised btn-primary col-md-offset-4 col-md-4 col-xs-8 col-xs-offset-2 col-sm-8 col-md-offset-2 logas col-md-12" style="background:#3895ac; font-size:15px;" >
+        check
+    </a> 
 
 
 
