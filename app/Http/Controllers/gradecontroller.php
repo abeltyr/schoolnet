@@ -18,7 +18,6 @@ use App\Http\Controllers\gradecontroller;
 
 class gradecontroller extends Controller
 {
-    
 	public function grade(Request $request){
 		$gradele = $request['grade'];
 		$notest = $request['test'];
@@ -63,7 +62,7 @@ class gradecontroller extends Controller
 			'subject4' => 'required|max:120',
 			'subject5' => 'required|max:120',
 		]);
-        $school = school::find('1');
+        $school = school::find('6');
         $schname =  $school->name;
         $schcode =  $school->school_code;
         $grade = new grade();
@@ -163,16 +162,49 @@ class gradecontroller extends Controller
         return view('viewtab',['tabs'=> $tabs]);
     }
     public function addtable(Request $request){
-        $num = '1';
-        $id = $request['see']; 
-        $tabb = grade::find($id);
+        $num = '1'; 
+        $id = $request['see'];
+        $this->ids = $id;
+        $tabb = grade::find($this->ids);
         $notest = $tabb->testno;
         $schname = $tabb->school_name;
         $schcode = $tabb->school_code;
         $gradele = $tabb->grade;
         while($num <= $notest){
             $tabname =  $schname.$schcode.$gradele.$num;
-            Schema::create($tabname,  function (Blueprint $table) { 
+            Schema::create(  $tabname, function (Blueprint $table) { 
+                    $tabb = grade::find($this->ids);
+                    $subject1 = $tabb->subj1;
+                    $subject2 = $tabb->subj2;
+                    $subject3 = $tabb->subj3;
+                    $subject4 = $tabb->subj4;
+                    $subject5 = $tabb->subj5;
+                    $subject6 = $tabb->subj6;
+                    $subject7 = $tabb->subj7;
+                    $subject8 = $tabb->subj8;
+                    $subject9 = $tabb->subj9;
+                    $subject10 = $tabb->subj10;
+                    $subject11 = $tabb->subj11;
+                    $subject12 = $tabb->subj12;
+                    $subject13 = $tabb->subj13;
+                    $subject14 = $tabb->subj14;
+                    $subject15 = $tabb->subj15;
+                    $subject16 = $tabb->subj16;
+                    $subject17 = $tabb->subj17;
+                    $subject18 = $tabb->subj18;
+                    $subject19 = $tabb->subj19;
+                    $subject20 = $tabb->subj20;
+                    $subject21 = $tabb->subj21;
+                    $subject21 = $tabb->subj21;
+                    $subject22 = $tabb->subj22;
+                    $subject23 = $tabb->subj23;
+                    $subject24 = $tabb->subj24;
+                    $subject25 = $tabb->subj25;
+                    $subject26 = $tabb->subj26;
+                    $subject27 = $tabb->subj27;
+                    $subject28 = $tabb->subj28;
+                    $subject29 = $tabb->subj29;
+                    $subject30 = $tabb->subj30;
                     $table->increments('id');
                     $table->string('school_code');
                     $table->string('schoolname');
@@ -180,6 +212,86 @@ class gradecontroller extends Controller
                     $table->string('lastname');
                     $table->string('studentid');
                     $table->string('section');
+                    $table->string($subject1);
+                    $table->string($subject2);
+                    $table->string($subject3);
+                    $table->string($subject4);
+                    $table->string($subject5);
+                    if($subject6 !== 'none'){
+                    $table->string($subject6);
+                    }
+                    if($subject7 !== 'none'){
+                    $table->string($subject7);
+                    }
+                    if($subject8 !== 'none'){
+                    $table->string($subject8);
+                    }
+                    if($subject9 !== 'none'){
+                    $table->string($subject9);
+                    }
+                    if($subject10 !== 'none'){
+                    $table->string($subject10);
+                    }
+                    if($subject11 !== 'none'){
+                    $table->string($subject11);
+                    }
+                    if($subject12 !== 'none'){
+                    $table->string($subject12);
+                    }
+                    if($subject13 !== 'none'){
+                    $table->string($subject13);
+                    }
+                    if($subject14 !== 'none'){
+                    $table->string($subject14);
+                    }
+                    if($subject15 !== 'none'){
+                    $table->string($subject15);
+                    }
+                    if($subject16 !== 'none'){
+                    $table->string($subject16);
+                    }
+                    if($subject17 !== 'none'){
+                    $table->string($subject17);
+                    }
+                    if($subject18 !== 'none'){
+                    $table->string($subject18);
+                    }
+                    if($subject19 !== 'none'){
+                    $table->string($subject19);
+                    }
+                    if($subject20 !== 'none'){
+                    $table->string($subject20);
+                    }
+                    if($subject21 !== 'none'){
+                    $table->string($subject21);
+                    }
+                    if($subject22 !== 'none'){
+                    $table->string($subject22);
+                    }
+                    if($subject23 !== 'none'){
+                    $table->string($subject23);
+                    }
+                    if($subject24 !== 'none'){
+                    $table->string($subject24);
+                    }
+                    if($subject25 !== 'none'){
+                    $table->string($subject25);
+                    }
+                    if($subject26 !== 'none'){
+                    $table->string($subject26);
+                    }
+                    if($subject27 !== 'none'){
+                    $table->string($subject27);
+                    }
+                    if($subject28 !== 'none'){
+                    $table->string($subject28);
+                    }
+                    if($subject29 !== 'none'){
+                    $table->string($subject29);
+                    }
+                    if($subject30 !== 'none'){
+                    $table->string($subject30);
+                    }
             }); 
             $table = new table();
             $table->schoolcode = $schname;

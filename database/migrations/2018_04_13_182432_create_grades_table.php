@@ -38,6 +38,7 @@ class CreateGradesTable extends Migration
             $table->string('subj15')->default('none');
             $table->string('subj16')->default('none');
             $table->string('subj17')->default('none');
+            $table->string('subj18')->default('none');
             $table->string('subj19')->default('none');
             $table->string('subj20')->default('none');
             $table->string('subj21')->default('none');

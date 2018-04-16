@@ -51,7 +51,7 @@ Route::GET('/edunet adding school',[
     'as' => 'inde',
 ]);
 
-Route::POST('/edunet school added',[
+Route::POST('/edunet/school/added',[
     'uses' => 'schoolcontroller@school',
     'as' => 'addsch',
 ]);
