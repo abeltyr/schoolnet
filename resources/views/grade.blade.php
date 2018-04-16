@@ -2,17 +2,17 @@
     @if(count($errors) > 0)   
         @foreach($errors->all() as $error)
             <div class="alert " style="  padding: 20px;  background-color: #f44336; /* Red */ color: white; border-left:6px solid #6b1905;  margin-bottom: 5px;">
-                <span style="margin-left: 15px;  color: white;  font-weight: bold;  float: right;  font-size: 22px;  line-height: 20px;  cursor: pointer;"
+                <span style="margin-left: 15px;  color: white;  font-weight: bold; font-size:20px; float: right;  font-size: 22px;  line-height: 20px;  cursor: pointer;"
                 onclick="this.parentElement.style.display='none';">&times;</span>
-                <p style="color: white; text-align:center;"> {{$error}} </p>
+                <p style="color: white; text-align:center; font-size:20px;"> {{$error}} </p>
             </div> 
         @endforeach 
         @endif 
         @if(session('success'))   
         <div class="alert " style="  padding: 15px;  background-color: #44f436;  border-left:6px solid #0ca120; margin-bottom: 5px;">
-            <span style="margin-left: 15px;  color: white;  font-weight: bold;  float: right;  font-size: 22px;  line-height: 20px;  cursor: pointer;"
+            <span style="margin-left: 15px;  color: white; font-size:20px; font-weight: bold;  float: right;  font-size: 22px;  line-height: 20px;  cursor: pointer;"
             onclick="this.parentElement.style.display='none';">&times;</span>
-            <p class="sute" > {{session('success')}} </p>
+            <p style="color: white; text-align:center; font-size:20px;"> {{session('success')}} </p>
         </div> 
         @endif 
         <div class="jumbotron col-md-12" style="padding:50px" >
